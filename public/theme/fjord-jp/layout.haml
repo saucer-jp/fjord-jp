@@ -19,13 +19,12 @@
     = header
   %body
     #header.clearfix.wide
-      %h1.design= @site.title
+      %h1.design= link_to @site.title, '/'
     - unless index? or entry?
       #bread_crumb= bread_crumb
     #wrapper.clearfix.wide
       .nav
         %ul
-          %li.top= link_to 'トップ', '/'
           %li.company_profile= link_to '会社概要', '/company_profile'
           %li.works= link_to '実績', '/works'
           %li.inquiry= link_to 'お問合せ', '/inquiry'
@@ -36,9 +35,13 @@
           %h2 ブログの新着記事
           %ul
             - Post.recent(5).each do |post|
-              %li= link_to post.title, post.link
-          .footer
-            <a href="http://fjord.jp/love" title="FJORD, LLC（合同会社フィヨルド）公式ブログ「design loves computer」のトップページへ">ブログのトップページへ</a>
+              %li
+                = link_to post.title, post.link
+                %span.meta
+                  = l(post.created_at.to_date, :format => :long)
+                  %span.nickname= "by #{post.user.name}"
+                  = image_tag gravatar_image_url(post.user.email, 20)
+          .footer= link_to 'トップページへ', '/'
       .footer
     #footer
       %p.copyright
