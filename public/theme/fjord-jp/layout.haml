@@ -1,0 +1,49 @@
+!!! XML
+!!!
+%html
+  %head
+    %meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+    %meta(http-equiv="Content-Style-Type" content="text/css")
+    %meta(http-equiv="Content-Script-Type" content="text/javascript")
+    - if entry?
+      %title== #{@entry.title} - #{@site.title}
+    - else
+      %title= @site.title
+    %meta(name="viewport" content="width=device-width, height=device-height, initial-scale=1.0")
+    %meta(name="description" content="#{@site.meta_description}")
+    %meta(name="keywords" content="#{@site.meta_keywords}")
+    = feed_tag :atom, '/index.atom', :title => @site.title
+    = favicon_tag "#{@theme.path}/favicon.ico"
+    = stylesheet_link_tag "#{@theme.path}/style.css"
+    = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min'
+    = header
+  %body
+    #header.clearfix.wide
+      %h1.design= @site.title
+    - unless index? or entry?
+      #bread_crumb= bread_crumb
+    #wrapper.clearfix.wide
+      .nav
+        %ul
+          %li.top= link_to 'トップ', '/'
+          %li.company_profile= link_to '会社概要', '/company_profile'
+          %li.works= link_to '実績', '/works'
+          %li.inquiry= link_to 'お問合せ', '/inquiry'
+      #main
+        = yield
+      #sub
+        .section
+          %h2 ブログの新着記事
+          %ul
+            - Post.recent(5).each do |post|
+              %li= link_to post.title, post.link
+          .footer
+            <a href="http://fjord.jp/love" title="FJORD, LLC（合同会社フィヨルド）公式ブログ「design loves computer」のトップページへ">ブログのトップページへ</a>
+      .footer
+    #footer
+      %p.copyright
+        Copyright© <a href="http://fjord.jp" title="FJORD, LLC（合同会社フィヨルド）homeへ">FJORD, LLC（合同会社フィヨルド）</a> 2011 All Rights Reserved.</p>
+      .poweredby
+        powered by
+        = link_to 'Lokka', 'http://lokka.org/'
+    = footer
