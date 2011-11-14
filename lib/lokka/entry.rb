@@ -29,8 +29,14 @@ class Entry
   end
 
   alias_method :raw_body, :body
-  def body
+  def long_body
     Markup.use_engine(markup, raw_body)
+  end
+  alias_method :body, :long_body
+
+  def short_body
+    @short_body ||= self.long_body \
+      .sub(/<!-- ?more ?-->.*/m, "<a href=\"#{link}\">#{I18n.t('continue_reading')}</a>")
   end
 
   def comments
@@ -99,7 +105,7 @@ class Entry
     end
   
     def recent(count = 5)
-      all(:limit => count)
+      all(:draft => false, :limit => count)
     end
   
     def published
@@ -116,7 +122,29 @@ def Entry(id_or_slug)
   Entry.get_by_fuzzy_slug(id_or_slug.to_s)
 end
 
-class Post < Entry; end
+class Post < Entry
+  alias orig_link link
+  def link
+    if Lokka::Helpers.custom_permalink?
+      Lokka::Helpers.custom_permalink_path({
+        :year     => self.created_at.year.to_s.rjust(4,'0'),
+        :monthnum => self.created_at.month.to_s.rjust(2,'0'),
+        :month    => self.created_at.month.to_s.rjust(2,'0'),
+        :day      => self.created_at.day.to_s.rjust(2,'0'),
+        :hour     => self.created_at.hour.to_s.rjust(2,'0'),
+        :minute   => self.created_at.min.to_s.rjust(2,'0'),
+        :second   => self.created_at.sec.to_s.rjust(2,'0'),
+        :post_id  => self.id.to_s,
+        :id       => self.id.to_s,
+        :slug     => self.slug || self.id.to_s,
+        :postname => self.slug || self.id.to_s,
+        :category => self.category ? (self.category.slug || self.category.id.to_s) : ""
+      })
+    else
+      orig_link
+    end
+  end
+end
 
 def Post(id_or_slug)
   Post.get_by_fuzzy_slug(id_or_slug.to_s)

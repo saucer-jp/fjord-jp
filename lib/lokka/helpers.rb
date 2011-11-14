@@ -105,7 +105,7 @@ module Lokka
         end
 
       layout = "#{dir}/layout"
-      path = 
+      path =
         if settings.supported_stylesheet_templates.include?(ext)
           "#{name}"
         else
@@ -122,50 +122,6 @@ module Lokka
 
     def comment_form
       haml :'system/comments/form', :layout => false
-    end
-
-    def link_to_if(cond, name, url, options = {})
-      cond ? link_to(name, url, options) : name
-    end
-
-    def link_to_unless(cond, name, url, options = {})
-      link_to_if !cond, name, url, options
-    end
-
-    def link_to_current(name, url, options = {})
-      request_path == url ? link_to(name, url, options) : name
-    end
-
-    def link_to_unless_current(name, url, options = {})
-      request_path != url ? link_to(name, url, options) : name
-    end
-
-    def select_field(object, method, values = [], options = {})
-      name = "#{object.class.name.downcase}[#{method}]"
-      v = object.send(method)
-
-      attrs = ''
-      options.each do |key, value|
-        attrs += %Q( #{key}="#{value}")
-      end
-
-      html = %Q(<select name="#{name}"#{attrs}>)
-      values.each do |value|
-        padding = value[0] == v ? ' selected="selected"' : ''
-        html += %Q(<option value="#{value[0]}"#{padding}>#{value[1]}</option>)
-      end
-      html + '</select>'
-    end
-
-    def checkbox(object, method, options = {})
-      name = "#{object.class.name.downcase}[#{method}]"
-      id = "#{object.class.name.downcase}_#{method}"
-      checked = object.send(method) ? ' checked="checked"' : ''
-      attrs = ''
-      options.each do |key, value|
-        attrs += %Q( #{key}="#{value}")
-      end
-      %Q(<input type="hidden" name="#{name}" value="false" /><input type="checkbox" id="#{id}" name="#{name}" value="true"#{attrs}#{checked} />)
     end
 
     def months
@@ -216,11 +172,11 @@ module Lokka
     end
 
     def render_preview(entry)
-        @entry = entry
-        @entry.user = current_user
-        @entry.title << ' - Preview'
-        @entry.updated_at = DateTime.now
-        setup_and_render_entry
+      @entry = entry
+      @entry.user = current_user
+      @entry.title << ' - Preview'
+      @entry.updated_at = DateTime.now
+      setup_and_render_entry
     end
 
     def setup_and_render_entry
@@ -325,6 +281,70 @@ module Lokka
         '0' * 32
       end
       size ? "#{url}?size=#{size}" : url
+    end
+
+    class TranslateProxy
+      def initialize(logger)
+        @logger = logger
+      end
+      def method_missing(name, *args)
+        name = name.to_s
+        @logger.warn %|"t.#{name}" translate style is obsolete. use "t('#{name}')".| # FIXME
+        I18n.translate(name)
+      end
+    end
+
+    def translate_compatibly(*args)
+      if args.length == 0
+        TranslateProxy.new(logger)
+      else
+        I18n.translate(*args)
+      end
+    end
+    alias_method :t, :translate_compatibly
+
+    def apply_continue_reading(posts)
+      posts.each do |post|
+        class << post
+          alias body short_body
+        end
+      end
+      posts
+    end
+
+    def custom_permalink?
+      Option.permalink_enabled == "true"
+    end
+
+    def custom_permalink_format
+      Option.permalink_format.scan(/(%.+?%[^%]?|.)/).flatten
+    end
+
+    def custom_permalink_parse(path)
+      chars = path.chars.to_a
+      custom_permalink_format().inject({}) do |result, pattern|
+        if pattern.start_with?("%")
+          next_char = pattern[-1]
+          next_char = nil if next_char == '%'
+          name = pattern.match(/^%(.+)%.?$/)[1].to_sym
+          c = nil; (result[name] ||= "") << c until (c = chars.shift) == next_char || c.nil?
+        elsif chars.shift != pattern
+          break nil
+        end
+        result
+      end
+    end
+
+    def custom_permalink_path(param)
+      path = Option.permalink_format
+      param.each do |tag, value|
+        path.gsub!(/%#{Regexp.escape(tag)}%/,value)
+      end
+      path
+    end
+
+    class << self
+      include Lokka::Helpers
     end
   end
 end
