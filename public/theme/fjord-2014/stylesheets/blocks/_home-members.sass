@@ -1,0 +1,48 @@
+.home-members__members
+  @extend .reset-ul
+.home-members__member
+  +inline-block
+  position: relative
+  width: 240px
+  +box-sizing(border-box)
+  padding-left: 96px
+  height: 80px
+.home-members__member-name
+  @extend .reset
+  font-family: 'Tauri', sans-serif
+  font-weight: 700
+  font-size: $sm
+  margin-bottom: .2em
+.home-members__member-icon-link
+  .home-members__member-icon-image
+    border: 2px solid transparent
+  &:hover
+    .home-members__member-icon-image
+      border: 2px solid $pink
+.home-members__member-icon-image
+  +box-sizing(border-box)
+  width: 82px
+  display: block
+  +border-radius(50%)
+  position: absolute
+  left: 0
+  top: 4px
+.home-members__member-name-link
+  +hover-link
+  color: $black
+  &:hover
+    color: $pink
+.home-members__sns-icons
+  @extend .reset-ul
+.home-members__sns-icon
+  +inline-block
+.home-members__sns-link
+  color: $black
+  +inline-block
+  width: 24px
+  height: 24px
+  line-height: 24px
+  text-align: center
+  &:hover
+    background-color: $pink
+    color: $white

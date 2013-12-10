@@ -1,0 +1,28 @@
+.clearfix
+  *zoom: 1
+.clearfix:after
+  content: ''
+  display: table
+  clear: both
+
+.center-margin
+  margin-left: auto
+  margin-right: auto
+
+.relative
+  position: relative
+
+.horizontal-list
+  +horizontal-list(0)
+
+=inconspicuous-white-link
+  color: rgba(255, 255, 255, 0.6)
+  &:hover,
+  &.is-hover
+    color: rgba(255, 255, 255, 1)
+
+=tag-icon
+  &:before
+    +fa
+    content: "\f02b"
+    margin-right: .4em

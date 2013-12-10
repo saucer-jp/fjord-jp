@@ -1,0 +1,50 @@
+#header
+  height: 86px
+
+#hero
+  margin-bottom: 24px
+  background-color: #bedce5
+  @include filter-gradient(#bedce5, #d3e6e8, horizontal)
+  $experimental-support-for-svg: true
+  @include background-image(linear-gradient(left,  #bedce5 0%,#d3e6e8 100%))
+.hero__image-wrapper
+  height: 120px
+  overflow: hidden
+  +box-sizing(border-box)
+.hero__image-wrapper--home
+  height: 336px
+  position: relative
+  +box-sizing(border-box)
+.hero__image
+  height: 100%
+  width: auto
+  display: block
+  margin: 0 auto
+.hero__hgrounp
+  position: absolute
+  left: 0
+  top: 76px
+  color: rgba(255, 255, 255, .7)
+.hero__site-title
+  font-size: 71px
+  font-family: 'Tauri', sans-serif
+  @extend .reset
+  margin-bottom: -5px
+.hero__tag-line
+  font-size: 30px
+  font-family: 'Tauri', sans-serif
+  @extend .reset
+.header-search-form
+  border: $gray-l solid 1px
+  +box-sizing(border-box)
+  +inline-block
+  margin-top: 28px
+  position: relative
+  padding-right: 32px
+.header-search-form__button
+  position: absolute
+  right: 0
+  top: 0
+  width: 32px
+  text-align: center
+  display: block

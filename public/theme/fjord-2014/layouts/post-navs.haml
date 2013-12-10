@@ -1,0 +1,31 @@
+.post-navs
+  .wrapper
+    %nav.post-nav
+      %h2.post-nav__first-heading
+        Resent Articles
+      %ul.post-nav__articles
+        - Post.recent(12).each do |post|
+          %li.post-nav__article<>
+            .post-nav__article-inner
+              %a{:href => "#{url(post.link)}", :class => "post-nav__article-link"}
+                %span.post-nav____article-image-wrapper
+                  = image_tag('aaaa', :class => "post-nav____article-image")
+                %span.post-nav____article-title
+                  = post.title
+                %span.post-nav__article-date
+                  = post.created_at.strftime("%Y年 %m月 %d日")
+    %nav.post-nav
+      %h2.post-nav__first-heading
+        Tags
+      %ul.post-nav__items
+        - Tag.all.each do |tag|
+          %li.post-nav__item.tag<>
+            %a.post-nav__item-link.tag{:href => url(tag.link)}= tag.name
+    %nav.post-nav
+      %h2.post-nav__first-heading
+        Archive
+      %ul.post-nav__items
+        - months.each do |month|
+          %li.post-nav__item.archive<>
+            %a.post-nav__item-link.archive{:href => url("/#{month.year}/#{month.month}/")}
+              #{month.year}/#{month.month}

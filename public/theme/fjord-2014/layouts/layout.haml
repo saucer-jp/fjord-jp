@@ -1,0 +1,76 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %title= data.page.title || "The Middleman"
+    = stylesheet_link_tag "all"
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"}
+    = javascript_include_tag  "all"
+  %body{:class => page_classes}
+    = partial "layouts/header"
+    #hero
+      .wrapper
+        = image_tag("#{@theme.path}/images/hero.png", {:class => "hero__image"})
+    = partial "layouts/global-nav"
+    %header.page__title
+      .wrapper
+        %h1.home__first-heading
+          = data.page.title
+    .content
+      .wrapper{:class => (page_classes == 'article' ? 'article__wrapper' : 'content__wrapper')}
+        = yield
+        - if page_classes == "index" or page_classes == "service" or page_classes == "members"
+          %aside.articles-list
+            %h1.articles-list__first-heading
+              BLOG
+            %ul.articles-list__articles
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+              %li.articles-list__article
+                = link_to "#", {:class => "articles-list__article-link"} do
+                  %span.articles-list__article-title
+                    ああああああああああああああああああ
+                  %span.articles-list__article-date
+                    2013/12/31
+
+    %footer.footer
+      .wrapper.footer__wrapper
+        %small.footer__copyright
+          &copy; 2007-2013 FJORD, LLC
+    = link_to "#global-nav", {:class => "scroll-top"} do
+      %i.fa.fa-angle-up

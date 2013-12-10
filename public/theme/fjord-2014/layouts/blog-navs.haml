@@ -1,0 +1,16 @@
+.side-column.blog-navs
+  %nav.blog-navs-tags
+    %h2.side-column__first-heading
+      Tags
+    %ul.blog-navs-tags__tags
+      - Tag.all.each do |tag|
+        %li.blog-navs-tags__tag
+          %a.blog-navs-tags__tag-link{:href => url(tag.link)}= tag.name
+  %nav.blog-navs-archives
+    %h2.side-column__first-heading
+      Archive
+    %ul.blog-navs-archives__archives
+      - months.each do |month|
+        %li.blog-navs-archives__archive<>
+          %a.blog-navs-archives__archive-link{:href => url("/#{month.year}/#{month.month}/")}
+            #{month.year}/#{month.month}

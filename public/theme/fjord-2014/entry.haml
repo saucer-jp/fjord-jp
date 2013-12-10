@@ -1,0 +1,31 @@
+%article.article__content
+  .article__content-inner
+    %header.article__header
+      %h2.article__title
+        = link_to "/article.html", {:class => "article__title-link"} do
+          = @entry.title
+    .article__body
+      = @entry.body
+    .article__informations
+      .article__created-at
+        %p.month= @entry.created_at.strftime("%b")
+        %p.day= @entry.created_at.day
+        %p.year= @entry.created_at.year
+        2013年12月31日
+      .article__author
+        = image_tag('member-icons/machida.jpg', {:alt => 'komagata', :class => "article__author-icon-image"})
+        %span.article__author-name
+          #{@entry.user.name}
+      - unless @entry.category.nil?
+        %p.category
+          %a{:href => @entry.category.link}= @entry.category.title
+      - unless @entry.tags.size.zero?
+        .tags
+          Tags :
+          \#{@entry.tags_to_html}
+      - if logged_in?
+        %p
+          %a{:href => @entry.edit_link}= t('edit')
+    - if article?
+      %footer.article__footer
+        = partial "home/disqus"

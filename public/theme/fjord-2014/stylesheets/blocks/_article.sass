@@ -1,0 +1,96 @@
+.article__wrapper
+  padding-top: 2.6em
+
+.article__content
+  position: relative
+  margin-bottom: 2em
+
+.article__content-inner
+  max-width: 680px
+  margin-left: auto
+  margin-right: auto
+
+.article__title
+  @extend .reset
+  font-size: $xxxxxxxl
+  line-height: 1.4
+  margin-bottom: .8em
+  margin-left: -0.1em
+  margin-right: -0.1em
+.article__title-link
+  color: $black
+  +hover-link
+
+.article__body
+  font-size: $lg
+  p
+    @extend .reset
+    line-height: 1.9
+    margin-bottom: 1.7em
+  ul,
+  ol
+    margin-bottom: 1.7em
+  li
+    margin-bottom: .6em
+    &:last-child
+      margin-bottom: 0
+  a
+    color: $pink
+    +hover-link
+  img
+    display: block
+    margin-left: auto
+    margin-right: auto
+    max-width: 120%
+  blockquote
+    @extend .reset
+    position: relative
+    padding-left: 1.8em
+    border-left: 8px solid rgba(0, 0, 0, .1)
+  *
+    &:last-child
+      margin-bottom: 0
+
+.article__informations
+  margin-bottom: 1.4em
+.article__author-icon-image
+  width: 32px
+  height: 32px
+  +border-radius(50%)
+  +inline-block
+  margin-right: .2em
+.article__author-name
+  display: block
+  font-size: $lg
+  font-family: 'Tauri', sans-serif
+  +inline-block
+  margin-right: .6em
+.article__created-at
+  font-weight: normal
+  font-size: $sm
+  +inline-block
+  padding-top: $lg - $sm
+  color: $gray
+
+.article__tags
+  display: inline
+  ul
+    @extend .reset-ul
+    display: inline
+  li
+    +inline-block
+  a
+    display: block
+    text-align: left
+    font-size: $sm
+    color: $black
+    +hover-link
+    padding-top: $lg - $sm
+    &:before
+      +fa
+      content: "\f02b"
+      margin-right: .4em
+
+.article__footer
+  padding-top: 3em
+

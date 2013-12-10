@@ -1,0 +1,21 @@
+%article.article__content
+  .article__content-inner
+    %header.article__header
+      %h2.article__title
+        = link_to "#{url(@post.link)}", {:class => "article__title-link"} do
+          = @post.title
+    .article__informations
+      %img{:src => "#{gravatar_image_url(@post.user.email)}", :class => "article__author-icon-image"}
+      %span.article__author-name
+        #{@post.user.name}
+      %span.article__created-at= @post.created_at.strftime("%Y/%m/%d")
+      - if logged_in?
+        %a{:href => @post.edit_link}= t('edit')
+      - unless @post.tags.size.zero?
+        .article__tags
+          #{@post.tags_to_html}
+
+    .article__body
+      = @post.body
+    %footer.article__footer
+      = partial "home/disqus"

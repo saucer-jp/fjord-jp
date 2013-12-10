@@ -1,0 +1,64 @@
+.articles__wrapper
+  margin-left: -0.3em
+  margin-right: -0.3em
+  position: relative
+  padding-right: 260px
+.articles-article
+  width: 33.33%
+  float: left
+  padding-right: .3em
+  padding-left: .3em
+  padding-bottom: .6em
+  +box-sizing(border-box)
+.articles-article__inner
+  padding: .6em
+  border: $gray-l 1px solid
+  height: 300px
+  overflow: hidden
+.articles-article__eyecatch-image-wrapper
+  display: block
+  overflow: hidden
+  height: 9em
+  margin-bottom: .6em
+.articles-article__eyecatch-image
+  width: 100%
+  height: auto
+.articles-article__title
+  @extend .reset
+  font-size: $lg
+  line-height: 1.6
+  margin-bottom: .4em
+.articles-article__title-link
+  +hover-link
+  color: $black
+  display: block
+  height: 3em
+  overflow: hidden
+.articles-article__author-icon-image
+  width: 24px
+  +border-radius(50%)
+  +inline-block
+  margin-right: .2em
+.articles-article__created-at
+  font-size: $xs
+  +inline-block
+  color: $gray
+.articles-article__tags
+  padding-top: .4em
+  ul
+    @extend .reset-ul
+  li
+    +inline-block
+    margin-right: .6em
+  a
+    +inline-block
+    font-size: $xs
+    color: $black
+    +hover-link
+    &:before
+      +fa
+      content: "\f02b"
+      margin-right: .4em
+
+
+

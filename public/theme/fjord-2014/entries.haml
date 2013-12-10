@@ -1,0 +1,32 @@
+- @posts.each do |post|
+  %articles.two-column-content
+    %header.articles__header
+      %h2.articles__title
+        %a{:href => post.link}= post.title
+    .articles__body
+      = post.body
+      - if logged_in?
+        %p.edit
+          %a{:href => post.edit_link}= t('edit')
+    .articles__informations
+      .articles__created-at
+        = post.created_at.strftime("%Y/ %m/ %d")
+      .articles__author
+        %img{:src => "#{gravatar_image_url(post.user.email)}", :class => "article__author-icon-image"}
+        %span.articles__author-name
+          #{post.user.name}
+      - unless post.tags.size.zero?
+        .articles__tags
+          #{post.tags_to_html}
+      - if logged_in?
+        %p
+          %a{:href => post.edit_link}= t('edit')
+
+.pager
+  %ul
+    - if @posts.pager.previous_page
+      %li.previous
+        %a{:href => "?page=#{@posts.pager.previous_page}"} Newer
+    - if @posts.pager.next_page
+      %li.next
+        %a{:href => "?page=#{@posts.pager.next_page}"} Older

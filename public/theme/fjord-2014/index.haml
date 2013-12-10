@@ -1,0 +1,89 @@
+%section.about
+  %section.two-column-content
+    .two-column-content__title-wrapper
+      %h2.two-column-content__second-heading
+        ABOUT
+    .about__description.two-column-content__inner
+      %p
+        どんな小さな羽さえもそよがぬ 弱い息のお話をせがむとは！でもこの哀れな声一つ三つあわせた舌に逆らえましょうか？居丈だかなプリマがまずは唱えるその宣告は「おはじめなさい」すこし優しげに二番手の希望
+
+  %section.home-members.two-column-content
+    .two-column-content__title-wrapper
+      %h2.two-column-content__second-heading
+        MEMBERS
+    %ul.home-members__members.two-column-content__inner
+      %li.home-members__member
+        %h3.home-members__member-icon
+          %a.home-members__member-icon-link{:href => "#"}
+            = image_tag("#{@theme.path}/images/member-icons/komagata.jpg", {:alt => 'komagata', :class => "home-members__member-icon-image"})
+        .home-members__member-informations
+          %h4.home-members__member-name
+            %a.home-members__member-name-link{:href => "#"}
+              KOMAGATA
+          %ul.home-members__sns-icons
+            %li.home-members__sns-icon.twitterr
+              <a href="#" class="home-members__sns-link"><i class="fa fa-twitter"></i></a>
+            %li.home-members__sns-icon.facebook
+              <a href="#" class="home-members__sns-link"><i class="fa fa-facebook"></i></a>
+            %li.home-members__sns-icon.github
+              <a href="#" class="home-members__sns-link"><i class="fa fa-github"></i></a>
+
+      %li.home-members__member
+        %h3.home-members__member-icon
+          %a.home-members__member-icon-link{:href => "#"}
+            = image_tag("#{@theme.path}/images/member-icons/machida.jpg", {:alt => 'komagata', :class => "home-members__member-icon-image"})
+        .home-members__member-informations
+          %h4.home-members__member-name
+            %a.home-members__member-name-link{:href => "#"}
+              MACHIDA
+          %ul.home-members__sns-icons
+            %li.home-members__sns-icon.twitter
+              <a href="#" class="home-members__sns-link"><i class="fa fa-twitter"></i></a>
+            %li.home-members__sns-icon.facebook
+              <a href="#" class="home-members__sns-link"><i class="fa fa-facebook"></i></a>
+            %li.home-members__sns-icon.github
+              <a href="#" class="home-members__sns-link"><i class="fa fa-github"></i></a>
+
+  %section.home-access.two-column-content
+    .two-column-content__title-wrapper
+      %h2.two-column-content__second-heading
+        ACCESS
+      .home-access__map-link-wrapper
+        <a href="/access" class="home-access__map-link"><i class="fa fa-map-marker"></i></a>
+    .home-access__content.two-column-content__inner
+      %address.home-access__address
+        〒151-0071 東京都渋谷区本町1-36-11 ドエルヤマト203
+      %p.home-access__take-time
+        京王新線初台駅より徒歩10分 <a href="/access" class="home-access__take-time-link">詳しく <i class="fa fa-angle-right"></i></a>
+      -#
+        %ol.home-access__directions
+          %li.home-access__direction
+            初台駅、国立劇場の出口から出ます
+          %li.home-access__direction
+            牛角、マクドナルドが左側に見える方向でまっすぐ進むとガスト（一階はセブンイレブン）が見えます
+          %li.home-access__direction
+            ガストの右側に本町小路という細い道があります。そこを直進。
+          %li.home-access__direction
+            200mくらい歩いた左側に「ドエルヤマト」というマンションがあります。そこの203を呼び出してください。
+
+  %section.home-overview.two-column-content
+    .two-column-content__title-wrapper
+      %h2.two-column-content__second-heading
+        OVERVIEW
+    .home-overview__content.two-column-content__inner
+      %ul.home-overview__informations
+        %li.home-overview__information
+          %span.home-overview__label
+            資本金
+          %span.home-overview__value
+            50万円
+        %li.home-overview__information
+          %span.home-overview__label
+            社員数
+          %span.home-overview__value
+            2人
+        %li.home-overview__information
+          %span.home-overview__label
+            設立
+          %span.home-overview__value
+            2007年12月7日

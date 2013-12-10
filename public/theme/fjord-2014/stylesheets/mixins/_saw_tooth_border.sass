@@ -1,0 +1,23 @@
+=saw_tooth_border($background: #E0DED5, $border_width: 12px, $border_position: right, $mobile: false)
+  background: $background
+  &:after
+    content: ""
+    display: block
+    background: $background
+    position: absolute
+    z-index: 5
+    @if $border_position == right
+      top: 0
+      height: 100%
+      right: $border_width * -1
+      width: $border_width
+      -webkit-mask: url("/images/triangle.svg") repeat-y top right / $border_width $border_width
+    @else if $border_position == bottom
+      bottom: $border_width * -1
+      left: 0
+      height: $border_width
+      width: 100%
+      -webkit-mask: url("/images/triangle.svg") repeat-x bottom left / $border_width $border_width
+    @if $mobile == false
+      @media screen and (max-width: 1024px)
+        none

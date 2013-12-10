@@ -1,0 +1,11 @@
+%aside.side-column
+  %h1.side-column__first-heading
+    Recent Articles
+  %ul.articles-list__articles
+    - Post.recent(10).each do |post|
+      %li.articles-list__article
+        %a{:href => "#{url(post.link)}", :class => "articles-list__article-link"}
+          %span.articles-list__article-title
+            = post.title
+          %span.articles-list__article-date
+            = post.created_at.strftime("%Y年 %m月 %d日")

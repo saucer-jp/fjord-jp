@@ -1,0 +1,20 @@
+.global-nav
+  padding-top: 40px
+  @extend .clearfix
+  margin-bottom: 60px
+.global-nav__li
+  display: block
+  width: 20%
+.global-nav__link
+  text-decoration: none
+  border-bottom: 2px solid $gray-l
+  display: block
+  font-weight: bold
+  line-height: 1
+  color: $gray-l
+  text-align: right
+  font-family: 'Tauri', sans-serif
+  font-size: $lg
+  &:hover
+    color: darken($gray-l, 18%)
+    border-bottom: 2px solid darken($gray-l, 18%)
