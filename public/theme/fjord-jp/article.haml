@@ -1,0 +1,20 @@
+.article.section
+  .header
+    .auther
+      = image_tag gravatar_image_url(post.user.email, 32)
+      = post.user.name
+    %h3.title= link_to post.title, post.link
+    %ul.date
+      %li.month= post.created_at.strftime('%b')
+      %li.day= post.created_at.day
+      %li.year= post.created_at.year
+  .body
+    ~ post.body
+    = post.tags_to_html
+    - unless page?
+      .comment
+        = link_to "#{post.link}#comment_form" do
+          = "#{t('comments')} (#{post.comments.size})"
+    .created_at= l post.created_at, :format => :long
+    - if logged_in?
+      .edit= link_to t('edit'), post.edit_link

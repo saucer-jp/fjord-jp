@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*
+Theme Name: fjord loves computer
+Theme URI: http://fjord.jp
+Description: フィヨルドサイトのテーマ
+Version: 1.0
+Author: teppei machida
+Author URI: http://machida.fjord.jp
+Text Domain: kubrick
+*/
+@import url("stylesheets/reset.css");
+@import url("stylesheets/basic.css");
